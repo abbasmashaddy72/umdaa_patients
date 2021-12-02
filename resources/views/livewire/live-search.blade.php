@@ -11,7 +11,8 @@
                 </select>
             </div>
             <div class="mb-2 col-12 col-md-8 col-lg-8">
-                <input type="text" wire:model="searchTerm" class="form-control" placeholder="Search Here" autofocus>
+                <input type="text" wire:model="searchTerm" class="form-control"
+                    placeholder="Speciality / Service / Doctor Name" autofocus>
             </div>
         </div>
         <div class="mt-5 row">
@@ -29,7 +30,9 @@
                                             height="100" width="100" />
                                     @endif
                                 </button>
-                                <span class="mt-3 name">Dr. {{ $doctor->name }}</span>
+                                <span class="mt-3 name" data-bs-toggle="modal"
+                                    data-bs-target="#{{ str_replace([' ', '.'], '_', $doctor->name) }}">Dr.
+                                    {{ $doctor->name }}</span>
                                 <span class="idd">{{ $doctor->qualification }}</span>
                                 <div class="flex-row gap-2 d-flex justify-content-center align-items-center">
                                     <span class="idd1">{{ $doctor->department->title }}</span>|<br>
@@ -43,27 +46,43 @@
                                 <div class="mt-3 text">
                                     <span>{{ $doctor->about }}</span>
                                 </div>
-                                <div class="flex-row gap-3 mt-3 icons d-flex justify-content-center align-items-center">
-                                    <span>
-                                        <a href="{{ $doctor->t_link }}" target="_blank">
-                                            <i class="bi bi-twitter"></i>
-                                        </a>
-                                    </span>
-                                    <span>
-                                        <a href="{{ $doctor->f_link }}" target="_blank">
-                                            <i class="bi bi-facebook"></i>
-                                        </a>
-                                    </span>
-                                    <span>
-                                        <a href="{{ $doctor->i_link }}" target="_blank">
-                                            <i class="bi bi-instagram"></i>
-                                        </a>
-                                    </span>
-                                    <span>
-                                        <a href="{{ $doctor->l_link }}" target="_blank">
-                                            <i class="bi bi-linkedin"></i>
-                                        </a>
-                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="{{ str_replace([' ', '.'], '_', $doctor->name) }}" tabindex="-1"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ $doctor->name }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body hero-banner">
+                                    <div class="container">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-5 offset-lg-1 order-lg-1">
+                                                @if (!empty($doctor->popup_image))
+                                                    <img src="{{ asset('images/doctors/popup/' . $doctor->popup_image) }}"
+                                                        class="img-fluid" alt="{{ $doctor->name }}" />
+                                                @else
+                                                    <img src="{{ asset('images/doctors/no-doctor-image-300x300.png') }}"
+                                                        class="img-fluid" alt="{{ $doctor->name }}" />
+                                                @endif
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <h1 class="mt-3 mb-3">{{ __('Services') }}</h1>
+                                                <a href="tel:+91-8125-920072"
+                                                    class="mb-3 border btn btn-outline-secondary btn-lg">Book
+                                                    Appointment</a>
+                                                @if (!empty($doctor->services->titles))
+                                                    @foreach (explode(',', $doctor->services->titles) as $item)
+                                                        <li class="lead fw-normal">{{ $item }}</li>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

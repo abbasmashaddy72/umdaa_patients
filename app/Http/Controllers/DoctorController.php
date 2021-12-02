@@ -45,6 +45,13 @@ class DoctorController extends Controller
     public function store(DoctorRequest $request)
     {
         $request->validated();
+        if (!empty($request->popup_image)) {
+            $newImageName1 = Str::random(20) . '.' . $request->popup_image->extension();
+            $request->popup_image->move(public_path('images/doctors/popup'), $newImageName1);
+        } else {
+            $newImageName1 = null;
+        }
+
         if (!empty($request->photo)) {
             $newImageName2 = Str::random(20) . '.' . $request->photo->extension();
             $request->photo->move(public_path('images/doctors'), $newImageName2);
@@ -60,10 +67,8 @@ class DoctorController extends Controller
             'about' => $request->about,
             'locality_id' => $request->locality_id,
             'department_id' => $request->department_id,
-            't_link' => $request->t_link,
-            'f_link' => $request->f_link,
-            'i_link' => $request->i_link,
-            'l_link' => $request->l_link,
+            'popup_image' => $newImageName1,
+            'clinic_number' => $request->clinic_number,
         ]);
         return redirect()->route('doctors')->with('message', 'Doctor Added Successfully');
     }
@@ -108,6 +113,12 @@ class DoctorController extends Controller
     {
         $request->validated();
         // dd($request->all());
+        if (!empty($request->popup_image)) {
+            $newImageName1 = Str::random(20) . '.' . $request->popup_image->extension();
+            $request->popup_image->move(public_path('images/doctors/popup'), $newImageName1);
+        } else {
+            $newImageName1 = Doctor::findOrFail($id)->popup_image;
+        }
         if (!empty($request->photo)) {
             $newImageName2 = Str::random(20) . '.' . $request->photo->extension();
             $request->photo->move(public_path('images/doctors'), $newImageName2);
@@ -123,10 +134,8 @@ class DoctorController extends Controller
             'about' => $request->about,
             'locality_id' => $request->locality_id,
             'department_id' => $request->department_id,
-            't_link' => $request->t_link,
-            'f_link' => $request->f_link,
-            'i_link' => $request->i_link,
-            'l_link' => $request->l_link,
+            'popup_image' => $newImageName1,
+            'clinic_number' => $request->clinic_number,
         ]);
         return redirect()->route('doctors')->with('message', 'Doctor Updated Successfully');
     }

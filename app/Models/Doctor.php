@@ -17,13 +17,11 @@ class Doctor extends Model implements Auditable
         'photo',
         'department_id',
         'qualification',
-        't_link',
-        'f_link',
-        'i_link',
-        'l_link',
         'locality_id',
         'extra_services',
         'about',
+        'popup_image',
+        'clinic_number',
     ];
 
     public function department()

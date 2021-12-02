@@ -27,14 +27,10 @@
         }
 
         .image img {
-            transition: all 0.5s
-        }
-
-        .card:hover .image img {
             transform: scale(1.5)
         }
 
-        .btn {
+        .btn-cus {
             height: 140px;
             width: 140px;
             border-radius: 50%
@@ -98,6 +94,46 @@
             background-color: #ccc
         }
 
+        .hero-banner h1 {
+            font-size: 48px;
+        }
+
+        .hero-banner .btn {
+            position: relative;
+            overflow: hidden;
+            z-index: 9;
+        }
+
+        .hero-banner .btn-primary {
+            color: #2f2f41;
+            background-color: rgba(1, 164, 121, 0.1);
+            border-color: #01a479;
+        }
+
+        .hero-banner .btn:before {
+            content: "";
+            background: #ed5561;
+            width: 4px;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+            -webkit-transition: all 0.5s ease-in-out 0s;
+            -moz-transition: all 0.5s ease-in-out 0s;
+            -ms-transition: all 0.5s ease-in-out 0s;
+            -o-transition: all 0.5s ease-in-out 0s;
+            transition: all 0.5s ease-in-out 0s;
+        }
+
+        .hero-banner .btn:hover:before {
+            width: 100%;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
     </style>
 </head>
 
@@ -109,47 +145,12 @@
                     UMDAA
                     <strong class="d-block">Health Care</strong>
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="mx-auto navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" target="_blank" href="https://www.facebook.com/umdaahealthcare"><i
-                                    class="bi bi-facebook"></i><span
-                                    class="ms-3 d-md-inline d-sm-inline d-lg-none">Facebook</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" target="_blank"
-                                href="https://www.instagram.com/umdaahealthcare/"><i class="bi bi-instagram"></i><span
-                                    class="ms-3 d-md-inline d-sm-inline d-lg-none">Instagram</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" target="_blank"
-                                href="https://www.linkedin.com/company/umdaa-health-care/"><i
-                                    class="bi bi-linkedin"></i><span
-                                    class="ms-3 d-md-inline d-sm-inline d-lg-none">Linkedin</span></a>
-                        </li>
                         <a class="navbar-brand d-none d-lg-block" href="/">
                             UMDAA
                             <strong class="d-block">Health Care</strong>
                         </a>
-                        <li class="nav-item">
-                            <a class="nav-link" target="_blank" href="https://twitter.com/umdaahealthcare"><i
-                                    class="bi bi-twitter"></i><span
-                                    class="ms-3 d-md-inline d-sm-inline d-lg-none">Twitter</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" target="_blank"
-                                href="https://www.youtube.com/channel/UC4SkMji7pnmzxJEmxdsogMQ"><i
-                                    class="bi bi-youtube"></i><span
-                                    class="ms-3 d-md-inline d-sm-inline d-lg-none">Youtube</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" target="_blank" href="#search"><i
-                                    class="bi bi-search d-lg-inline d-none"></i></a>
-                        </li>
                     </ul>
                 </div>
 
@@ -162,15 +163,15 @@
                         <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="images/slider/portrait-successful-mid-adult-doctor-with-crossed-arms.jpg"
+                                    <img src="{{ asset('images/slider/portrait-successful-mid-adult-doctor-with-crossed-arms.jpg') }}"
                                         class="img-fluid" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/slider/young-asian-female-dentist-white-coat-posing-clinic-equipment.jpg"
+                                    <img src="{{ asset('images/slider/young-asian-female-dentist-white-coat-posing-clinic-equipment.jpg') }}"
                                         class="img-fluid" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="images/slider/doctor-s-hand-holding-stethoscope-closeup.jpg"
+                                    <img src="{{ asset('images/slider/doctor-s-hand-holding-stethoscope-closeup.jpg') }}"
                                         class="img-fluid" alt="">
                                 </div>
                             </div>
@@ -239,21 +240,6 @@
                     <p><a href="tel:+91-8125920072">+91-8125920072</a></p>
                     <p>Tolichowki, Hyderabad, Telangana - 500008</p>
                 </div>
-                <div class="col-lg-3 col-md-6 col-12 ms-auto">
-                    <h5 class="mb-3 mb-lg-4">Socials</h5>
-                    <ul class="social-icon">
-                        <li><a href="https://www.facebook.com/umdaahealthcare" target="_blank"
-                                class="social-icon-link bi-facebook"></a></li>
-                        <li><a href="https://www.instagram.com/umdaahealthcare/" target="_blank"
-                                class="social-icon-link bi-instagram"></a></li>
-                        <li><a href="https://www.linkedin.com/company/umdaa-health-care/" target="_blank"
-                                class="social-icon-link bi-linkedin"></a></li>
-                        <li><a href="https://twitter.com/umdaahealthcare" target="_blank"
-                                class="social-icon-link bi-twitter"></a></li>
-                        <li><a href="https://www.youtube.com/channel/UC4SkMji7pnmzxJEmxdsogMQ" target="_blank"
-                                class="social-icon-link bi-youtube"></a></li>
-                    </ul>
-                </div>
             </div>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -296,45 +282,7 @@
             // Banner Carousel
             var myCarousel = document.querySelector('#myCarousel')
             var carousel = new bootstrap.Carousel(myCarousel, {
-                interval: 1500
-            })
-
-            // REVIEWS NAVIGATION
-            function ReviewsNavResize() {
-                $('.navbar').scrollspy({
-                    offset: -94
-                })
-
-                var ReviewsOwlItem = $('.reviews-carousel .owl-item').width()
-
-                $('.reviews-carousel .owl-nav').css({
-                    width: ReviewsOwlItem + 'px'
-                })
-            }
-
-            $(window).on('resize', ReviewsNavResize)
-            $(document).on('ready', ReviewsNavResize)
-
-            // HREF LINKS
-            $('a[href*="#"]').click(function(event) {
-                if (
-                    location.pathname.replace(/^\//, '') ==
-                    this.pathname.replace(/^\//, '') &&
-                    location.hostname == this.hostname
-                ) {
-                    var target = $(this.hash)
-                    target = target.length ?
-                        target :
-                        $('[name=' + this.hash.slice(1) + ']')
-                    if (target.length) {
-                        event.preventDefault()
-                        $('html, body').animate({
-                                scrollTop: target.offset().top - 74
-                            },
-                            1000
-                        )
-                    }
-                }
+                interval: 15000
             })
         })(window.jQuery)
     </script>

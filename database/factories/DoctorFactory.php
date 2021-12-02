@@ -43,10 +43,6 @@ class DoctorFactory extends Factory
             'locality_id' => rand(98, 110),
             'extra_services' => $medicine1 . ',' . $medicine2 . ',' . $medicine3 . ',' . $medicine4 . ',' . $medicine5 . ',' . $medicine6,
             'about' => $this->faker->realText(100, 3),
-            't_link' => $this->faker->youtubeUri(),
-            'f_link' => $this->faker->youtubeUri(),
-            'i_link' => $this->faker->youtubeUri(),
-            'l_link' => $this->faker->youtubeUri(),
         ];
     }
 }
