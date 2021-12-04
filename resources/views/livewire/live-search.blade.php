@@ -2,17 +2,23 @@
     <div class="container p-3 mt-4 mb-4">
         <div class="row">
             <div class="mb-2 col-lg-4 col-12 col-md-4">
-                <select class="form-select w-100" wire:model='searchLocality'>
+                <select class="form-select w-100" style="background-color: rgb(36,124,255, 0.5);"
+                    wire:model='searchLocality'>
                     <option value="" selected>Select Locality</option>
-                    @foreach ($locations as $item)
+                    @foreach ($doc_locations as $item)
                         <option value="{{ $item->locality->id }}">{{ $item->locality->name }}
+                        </option>
+                    @endforeach
+                    @foreach ($static_location as $item)
+                        <option value="{{ $item->id }}">{{ $item->name }}
                         </option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-2 col-12 col-md-8 col-lg-8">
                 <input type="text" wire:model="searchTerm" class="form-control"
-                    placeholder="Speciality / Service / Doctor Name" autofocus>
+                    style="background-color: rgb(36,124,255, 0.3);" placeholder="Speciality / Service / Doctor Name"
+                    autofocus>
             </div>
         </div>
         <div class="mt-5 row">
@@ -21,7 +27,7 @@
                     <div class="mb-4 text-center col-12 col-md-4 col-lg-4">
                         <div class="card w-100">
                             <div class="card-body image d-flex flex-column justify-content-center align-items-center">
-                                <button class="btn btn-secondary">
+                                <button class="btn btn-secondary" style="border-radius: 50%;">
                                     @if (!empty($doctor->photo))
                                         <img src="{{ asset('images/doctors/' . $doctor->photo) }}" height="100"
                                             width="100" />
@@ -30,8 +36,7 @@
                                             height="100" width="100" />
                                     @endif
                                 </button>
-                                <span class="mt-3 name" data-bs-toggle="modal"
-                                    data-bs-target="#{{ str_replace([' ', '.'], '_', $doctor->name) }}">Dr.
+                                <span class="mt-3 name">Dr.
                                     {{ $doctor->name }}</span>
                                 <span class="idd">{{ $doctor->qualification }}</span>
                                 <div class="flex-row gap-2 d-flex justify-content-center align-items-center">
@@ -40,8 +45,13 @@
                                 </div>
                                 <div class="mt-2 d-flex">
                                     <a href="tel:+91-812592-0072">
-                                        <button class="btn1 btn-dark">Book Appointment</button>
+                                        <button class="btn1 btn-warning">Book Appointment</button>
                                     </a>
+                                    <span class="ms-3">
+                                        <button class="btn1 btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#{{ str_replace([' ', '.'], '_', $doctor->name) }}">Learn
+                                            More</button>
+                                    </span>
                                 </div>
                                 <div class="mt-3 text">
                                     <span>{{ $doctor->about }}</span>
@@ -54,7 +64,7 @@
                         <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">{{ $doctor->name }}</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Dr. {{ $doctor->name }}</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -73,13 +83,18 @@
                                             <div class="col-lg-6">
                                                 <h1 class="mt-3 mb-3">{{ __('Services') }}</h1>
                                                 <a href="tel:+91-8125-920072"
-                                                    class="mb-3 border btn btn-outline-secondary btn-lg">Book
+                                                    class="mb-3 border btn1 btn-warning btn-lg">Book
                                                     Appointment</a>
-                                                @if (!empty($doctor->services->titles))
-                                                    @foreach (explode(',', $doctor->services->titles) as $item)
-                                                        <li class="lead fw-normal">{{ $item }}</li>
-                                                    @endforeach
-                                                @endif
+                                                <div class="mt-5">
+                                                    @if (!empty($doctor->services->titles))
+                                                        @foreach (explode(',', $doctor->services->titles) as $item)
+                                                            <li class="lead fw-normal">{{ $item }}</li>
+                                                        @endforeach
+                                                    @else
+                                                        <li class="lead fw-normal">{{ __('No Services Available') }}
+                                                        </li>
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

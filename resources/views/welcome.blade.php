@@ -18,12 +18,19 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     @livewireStyles()
     <style>
+        @media(min-width:992px) {
+            body {
+                padding-top: 75px;
+            }
+        }
+
         .card {
             width: 350px;
             background-color: #efefef;
             border: none;
             cursor: pointer;
-            transition: all 0.5s
+            transition: all 0.5s;
+            border-radius: 8px;
         }
 
         .image img {
@@ -65,9 +72,10 @@
             height: 40px;
             width: 150px;
             border: none;
-            background-color: #000;
-            color: #aeaeae;
-            font-size: 15px
+            background-color: rgb(36, 124, 255, 0.8) !important;
+            color: #0f0f0f;
+            font-size: 15px;
+            border-radius: 8px;
         }
 
         .text span {
@@ -143,13 +151,13 @@
             <div class="container">
                 <a class="mx-auto navbar-brand d-lg-none" href="/">
                     UMDAA
-                    <strong class="d-block">Health Care</strong>
+                    <strong class="d-block text-dark fw-bold h5">Health Care</strong>
                 </a>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="mx-auto navbar-nav">
                         <a class="navbar-brand d-none d-lg-block" href="/">
                             UMDAA
-                            <strong class="d-block">Health Care</strong>
+                            <span class="text-dark">Health Care</span>
                         </a>
                     </ul>
                 </div>

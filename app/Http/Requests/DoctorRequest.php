@@ -27,7 +27,6 @@ class DoctorRequest extends FormRequest
             'name' => ['required', 'string', 'max:255', 'min:3'],
             'qualification' => ['required', 'max:255', 'min:3'],
             'department_id' => ['required'],
-            'about' => ['string'],
             'locality_id' => ['required'],
         ];
     }
