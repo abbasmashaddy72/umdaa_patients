@@ -1,8 +1,8 @@
 <div>
     <div class="container p-3 mt-4 mb-4">
         <div class="row">
-            <div class="mb-2 col-lg-4 col-12 col-md-4">
-                <select class="form-select w-100" style="background-color: rgb(36,124,255, 0.5);"
+            <div class="mb-2 col-lg-4 col-12 col-md-4" wire:ignore>
+                <select class="form-select w-100" id="select2-dropdown" style="background-color: rgb(36,124,255, 0.5);"
                     wire:model='searchLocality'>
                     <option value="" selected>Select Locality</option>
                     @foreach ($doc_locations as $item)
@@ -108,4 +108,16 @@
             @endif
         </div>
     </div>
+    @section('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#select2-dropdown').select2();
+                $('#select2-dropdown').on('change', function(e) {
+                    var data = $('#select2-dropdown').select2("val");
+                    @this.set('searchLocality', data);
+                });
+            });
+        </script>
+    @endsection
 </div>

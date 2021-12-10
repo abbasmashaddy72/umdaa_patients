@@ -41,7 +41,7 @@ class LiveSearch extends Component
                 })
                 ->orderBy('name', 'ASC')
                 ->get();
-        } elseif (!empty($this->searchTerm) && !empty($this->searchLocality) && in_array($this->searchLocality, $static_location->pluck('id')->toArray())) {
+        } elseif (!empty($this->searchTerm) && in_array($this->searchLocality, array_diff($static_location->pluck('id')->toArray(), $doc_locations->pluck('locality_id')->toArray()))) {
 
             $this->doctors = Doctor::with('department', 'services', 'locality')
                 ->orWhere('locality_id', $this->searchLocality)
@@ -53,7 +53,7 @@ class LiveSearch extends Component
                 ->orderBy('name', 'ASC')
                 ->orderBy('locality_id', 'DESC')
                 ->get();
-        } elseif (!empty($this->searchTerm) && !empty($this->searchLocality)  && in_array($this->searchLocality, $doc_locations->pluck('locality.id')->toArray())) {
+        } elseif (!empty($this->searchTerm) && in_array($this->searchLocality, $doc_locations->pluck('locality_id')->toArray())) {
             $data0 = Doctor::with('department', 'services', 'locality')
                 ->where('locality_id', $this->searchLocality)
                 ->where('qualification', 'LIKE', '%' . $this->searchTerm . '%')

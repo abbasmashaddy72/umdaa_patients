@@ -16,7 +16,23 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     @livewireStyles()
+    @yield('styles')
+    <style>
+        .select2-selection__rendered {
+            line-height: 35px !important;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 40px !important;
+        }
+
+        .select2-selection__arrow {
+            height: 40px !important;
+        }
+
+    </style>
     <style>
         @media(min-width:992px) {
             body {
@@ -295,6 +311,7 @@
         })(window.jQuery)
     </script>
     @livewireScripts()
+    @yield('scripts')
 </body>
 
 </html>
